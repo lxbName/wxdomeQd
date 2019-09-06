@@ -1,0 +1,47 @@
+<!--pages/wxml/index.wxml
+<text>当前时间：{{time}}</text>-->
+
+<!--
+  三元运算
+  {a: 1,b: 2,c: 3}
+  
+<view>{{a+b}} + {{c}} + d</view>-->
+
+<!--条件判断
+<view wx:if="{{length > 5}}"> {{length}}大于5 </view>
+<view wx:elif="{{length > 2}}"> {{length}}大于2 </view>
+<view wx:else> 剩余数为{{length}} </view>-->
+
+<!--array数组 wx:for
+<view wx:for="{{array}}">
+  {{index}} : {{item.message}}
+</view>-->
+
+<switch wx:for="{{objectArray}}" wx:key="unique"> {{item.id}} </switch>
+<button bindtap="switch"> 打乱顺序 </button>
+<button class="weui-btn mini-btn" type="primary" size="mini" bindtap="addToFront"> 增加数据 </button>
+<button style="color:red;" bindtap="restore"> 重置 </button>
+
+<!--<switch wx:for="{{numberArray}}" wx:key="*this"> {{item}} </switch>
+<button bindtap="addNumberToFront"> 在前面添加数字 </button>-->
+
+<!--模板-->
+<!--<template name="odd">
+  <view>odd</view>
+</template>
+
+<template name="even">
+  <view>even</view>
+</template>
+
+<block wx:for="{{[1, 2, 3, 4, 5]}}">
+  <template is="{{item % 2 == 0 ? 'even' : 'odd'}}"/>
+</block>-->
+
+<view>
+  <button bindtap="bindtest">测试后台接口</button>
+</view>
+
+<view>
+  <button bindtap="gobackLogin">返回登录页</button>
+</view>
