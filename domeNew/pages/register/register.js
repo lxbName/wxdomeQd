@@ -1,5 +1,6 @@
 const userRegisterUrl = require('../../config.js').userRegisterUrl;    //注册接口
 const selectPhoneUrl = require('../../config.js').selectPhoneUrl;  //查询手机号是否注册
+const sendSmsUrl = require('../../config.js').sendSmsUrl;  //发送短信验证码接口
 // pages/register/register.js
 Page({
 
@@ -101,21 +102,23 @@ Page({
         } else if (res.data.data == 1){
           warn = "手机号码已被注册";
         } else {
+          console.info("that.data==", that.data.phone);
           wx.request({
-            url: '', //填写发送验证码接口
-            method:"POST",
+            url: sendSmsUrl, //填写发送验证码接口
             data:{
-              coachid:that.data.phone
+              phone:that.data.phone
             },
+            method: "GET",
             header:{
               'content-type': 'application/x-www-form-urlencoded'
             },
             success: function(res){
               console.info(res.data);
-              that.setData({
-                VerificationCode: res.data.verifycode
-              })
-
+              if (res.data == null){
+                that.setData({
+                  VerificationCode: res.data.verifyCode
+                })
+              }
               //当手机号正确的时候提示用户短信验证码已发送
               wx.showToast({
                 title: '短信验证码已发送',
